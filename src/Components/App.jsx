@@ -2,8 +2,8 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../Assets/App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Sign_Up from "../Components/Login.js"
-import Sign_In from "../Components/Register.js"
+import Sign_Up from "./Login.jsx"
+import Sign_In from "./Register.jsx"
 
 function App() {
     return (

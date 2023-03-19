@@ -1,5 +1,4 @@
 import React from "react"
-import  img from "../Assets/img/fondo-tecnologia-circuito-sistema-conexion-datos-digitales-alta-tecnologia-diseno-electronico-comput.png"
 
 export default function (props) {
     return (
