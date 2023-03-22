@@ -2,6 +2,12 @@ body{
   background-color: aliceblue;
 }
 
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
 .ht{
   height: 100vh;
 }
@@ -18,6 +24,22 @@ body{
   margin-top: 5%;
 }
 
+.m2{
+  margin-top: 2%;
+}
+
+.hq{
+  height: 40%;
+}
+
+.h30{
+  height: 30%;
+}
+
+.h100{
+  height: 100%;
+}
+
 .box1{
   border: solid 8px #1775BB;
   border-radius: 20px;
@@ -28,4 +50,61 @@ body{
   border: solid 8px #1775BB;
   border-radius: 20px;
   height: 80vh;
+}
+
+.boxblue{
+  background-color: #D5E6FF;
+  border-radius: 10px;
+  border: #D5E6FF 1px;
+}
+
+.temp{
+  font-family: 'Fira Code', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 150%;
+  text-align: center;
+  color: #1775BB;
+  margin-top: 15%;
+}
+
+.swich{
+  font-family: 'Fira Code', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 150%;
+  text-align: center;
+  color: #1775BB;
+  margin-top: 65%;
+}
+
+/* ---------------------GRAFICAS--------------------- */
+
+.container{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  border: 5px solid rgba(23, 117, 187, 1);
+  border-radius: 26px;
+  padding: 0;
+}
+
+.graphic{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(213, 230, 255, 1);
+  border: 10px solid rgba(119, 174, 224, 1);
+  border-radius: 20px;
+}
+
+.columns-12{
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.columns-2{
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
 }
