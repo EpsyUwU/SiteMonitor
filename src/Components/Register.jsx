@@ -6,19 +6,24 @@ export default function SignUp() {
     email: "",
     password: "",
     nombre: "",
+    apellido_materno: "",
+    apellido_paterno: "",
+    fecha_nacimiento: "",
+    username: ""
   });
   const navigate = useNavigate();
   const onSubmit = () => {
-    console.log(user.nombre);
-    console.log(user.email);
-    console.log(user.password);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      Name: user.nombre,
+      nombre: user.nombre,
+      apellido_materno: user.apellido_materno,
+      apellido_paterno: user.apellido_paterno,
+      fecha_nacimiento: user.fecha_nacimiento,
       email: user.email,
       password: user.password,
+      username: user.username
     });
 
     var requestOptions = {
@@ -28,7 +33,7 @@ export default function SignUp() {
       redirect: "follow",
     };
 
-    fetch("", requestOptions)
+    fetch("localhost:3000/api/checkroom/user/Register", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result), navigate("/Home"))
       .catch((error) => console.log("error", error));
@@ -60,8 +65,47 @@ export default function SignUp() {
                           id="nombre"
                           name="nombre"
                           type="text"
-                          placeholder="Nombre y Apellidos"
+                          placeholder="Nombre"
                           className="form-control rounded-pill border-0 shadow-sm px-4"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <input
+                          id="apellido_materno"
+                          name="apellido_materno"
+                          type="text"
+                          placeholder="Apellido materno"
+                          className="form-control rounded-pill border-0 shadow-sm px-4"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <input
+                          id="apellido_paterno"
+                          name="apellido_paterno"
+                          type="text"
+                          placeholder="Apellido paterno"
+                          className="form-control rounded-pill border-0 shadow-sm px-4"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <input
+                          id="fecha_nacimiento"
+                          name="fecha_nacimiento"
+                          type="date"
+                          className="form-control rounded-pill border-0 shadow-sm px-4"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <input
+                          id="username"
+                          name="username"
+                          type="text"
+                          placeholder="Username"
+                          className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
                           onChange={handleChange}
                         />
                       </div>
@@ -71,7 +115,7 @@ export default function SignUp() {
                           name="email"
                           type="email"
                           placeholder="Correo Electronico"
-                          className="form-control rounded-pill border-0 shadow-sm px-4"
+                          className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
                           onChange={handleChange}
                         />
                       </div>
@@ -85,8 +129,7 @@ export default function SignUp() {
                           onChange={handleChange}
                         />
                       </div>
-                      <br />
-                      <div className="d-grid gap-2 mt-2">
+                      <div className="d-grid gap-2 ">
                         <button
                           type="submit"
                           className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"
@@ -95,7 +138,7 @@ export default function SignUp() {
                         </button>
                       </div>
                     </form>
-                    <div className="Btn_Registro mt-5">
+                    <div className="Btn_Registro mt-3">
                       <p>¿Ya tienes una cuenta?</p>
                       <div className="d-grid gap-2 mt-2">
                         <button

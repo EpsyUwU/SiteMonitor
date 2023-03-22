@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 export default function SignIn() {
     const [user, setUser] = useState({
-        email: "",
+        UserName: "",
         password: "",
       });
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function SignIn() {
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
-      "email": user.email,
+      "username": user.UserName,
       "password": user.password
     });
     
@@ -26,7 +26,7 @@ export default function SignIn() {
       redirect: 'follow'
     };
     
-    fetch("", requestOptions)
+    fetch("localhost:3000/api/checkroom/user/login", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result), navigate('/Home'))
       .catch(error => console.log('error', error));
