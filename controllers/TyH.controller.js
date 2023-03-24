@@ -30,8 +30,6 @@ const all_RegsitroTyH = async(req,res) => {
     })
 }
 
-
-
 const TyH = {
     nuevoRegistroTyH,
     all_RegsitroTyH

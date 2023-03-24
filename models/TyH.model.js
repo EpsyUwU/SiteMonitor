@@ -3,7 +3,7 @@ import {conexion}  from "../database/MySQL.database.js";
 
 export const _insertNewDateHyT = (TyH,callback) =>{
 
-    let sql = 'call sp_nuevoRegistro_TyH( 1, '
+    let sql = 'call sp_nuevoRegistro_TyH('
                                             +TyH.humedad+','
                                             +TyH.temperatura+')';
 
@@ -48,6 +48,5 @@ const TyHModel = {
     _insertNewDateHyT,
     getall_RegsitroTyH
 };
-
 
 export default TyHModel;

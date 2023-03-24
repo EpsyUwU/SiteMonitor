@@ -73,9 +73,7 @@ export const _delete_user = (IdUsuario,callback) =>{
         };
         connection.end();
         return callback(null);
-
     });
-
 }
 
 //Llamar a todos los usuarios---------------------------------------
@@ -139,5 +137,4 @@ export const getUserById = (IdUsuario,callback) =>{
         return callback(null);
 
     });
-
 }
