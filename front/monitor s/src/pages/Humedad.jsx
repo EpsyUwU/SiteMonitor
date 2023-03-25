@@ -22,7 +22,7 @@ function Humedad() {
           <VistaHumedad />
         </div>
       </div>
-    </div>
+6    </div>
     </>
   )
 }
