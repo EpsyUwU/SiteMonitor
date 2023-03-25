@@ -37,7 +37,6 @@ export default function SignIn() {
 
   return (
     <div className="container-fluid text-center">
-      <div className="container-fluid">
         <div className="row no-gutter">
           <div className="col-md-6 d-none d-md-flex bg-image" />
 
@@ -104,7 +103,6 @@ export default function SignIn() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }
