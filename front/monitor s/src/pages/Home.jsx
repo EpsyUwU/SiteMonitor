@@ -4,14 +4,15 @@ import Titulo from '../base/Titulo';
 import VistaHome from '../components/VistaHome'
 import Datos from "../base/Datos";
 import {img} from "../img";
-import { Component } from 'react';
+//import { Component } from 'react';
 import ButtonReg from '../base/ButtonReg';
+import { Link }from 'react-router-dom'
+
 
 
 function Home() {
     let temperatura = "28C°";
     let porcentaje = "35%";
-    const tenmp = <link href="../components/VistaTemperatura.jsx" />
   return (
     <>
         <div className="container-fluid ht">
@@ -38,7 +39,7 @@ function Home() {
                         <div className="col-7">
                             <VistaHome imagen={img.images.Temperatura}/>
                             <Datos data={temperatura}/>
-                            <ButtonReg />
+                            <Link to = "/Temperatura"><ButtonReg /></Link>
                         </div>
                     </div>
                 </div>
@@ -47,7 +48,7 @@ function Home() {
                         <div className="col-7">
                             <VistaHome imagen={img.images.Humedad}/>
                             <Datos data={porcentaje} />
-                            <ButtonReg/>
+                            <Link to = "/Humedad"><ButtonReg /></Link>
                         </div>
                     </div>
                 </div>

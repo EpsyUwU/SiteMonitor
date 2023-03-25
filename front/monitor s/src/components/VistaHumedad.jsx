@@ -26,7 +26,7 @@ function VistaHumedad() {
       <div className="col-10 box2">
         <StyledBox className='row'>
           <div className="row">
-
+            Aqui va el awa y la grafica
           </div>
         </StyledBox>
       </div>
