@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
 
 function Rectangle({porcentaje}) {
     return ( 
-        <StyledDiv sizing={porcentaje}>{porcentaje}%</StyledDiv>
+        <StyledDiv sizing={porcentaje}> {porcentaje}%</StyledDiv>
      );
 }
 
