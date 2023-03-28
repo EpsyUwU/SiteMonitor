@@ -44,8 +44,8 @@ const StyledGraff=styled.div`
   overflow: auto
 `;
 
-function MinMaxH(porcentt, registers) {
-  let porcentaje = "param";//let porcentaje = porcentt;
+function MinMaxH() {
+  let porcentaje = "param";
   let reg=24;
   return (
     <StyledBox className='row'>
@@ -66,10 +66,8 @@ function MinMaxH(porcentt, registers) {
         <div className="col-8">
           {/** */}
           <div className="row">
-            <StyledLargeBar><ProgressBars>kguy</ProgressBars>jhv</StyledLargeBar>
-            
+            <StyledLargeBar>jhbyg</StyledLargeBar>
           </div>
-          <ProgressBars>hgcgx</ProgressBars>
         </div>
         <div className="col-2">
           <div className="row"><StyledColorBox>a</StyledColorBox></div>
