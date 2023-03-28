@@ -4,7 +4,6 @@ const nuevoRegistroTyH = async(req,res) => {
         console.log(req.body);
 
         _insertNewDateHyT._insertNewDateHyT(req.body.data,(data)=>{
-
         });
 
         res.send("ok");
