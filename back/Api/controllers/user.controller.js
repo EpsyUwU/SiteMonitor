@@ -40,7 +40,7 @@ const create_user = async (req, res) => {
             error:true,
             status:500,
             menssage:"Error en el servidor",
-            error : error.toString()
+            StatusError : error.toString()
         });
     }
 
@@ -63,7 +63,7 @@ const update_user = async(req, res) => {
     try {
         _update_user(user, (data) => {
             let status = data.status;
-            //console.log(status);
+            console.log(status);
            
             return res.json({
                 error:false,
@@ -78,7 +78,7 @@ const update_user = async(req, res) => {
             error:true,
             status:500,
             menssage:"Error en el servidor",
-            error : error.toString()
+            StatusError : error.toString()
         });
     }
 
@@ -110,7 +110,7 @@ const delete_user = async(req, res) => {
             error:true,
             status:500,
             menssage:"Error en el servidor",
-            error : error.toString()
+            StatusError : error.toString()
         });
     }
 }
@@ -178,7 +178,7 @@ const login = async(req,res) => {
             error:true,
             status:500,
             menssage:"Error en el servidor",
-            error : error.toString()
+            StatusError : error.toString()
         });
     }
 
@@ -218,7 +218,7 @@ const user_By_IdUser = async(req,res) => {
             error:true,
             status:500,
             menssage:"Error en el servidor",
-            error : error.toString()
+            StatusError : error.toString()
         });
     }
 }
