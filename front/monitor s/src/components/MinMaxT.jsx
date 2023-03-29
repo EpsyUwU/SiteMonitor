@@ -11,8 +11,9 @@ const StyledMedida = styled.div`
 `;
 
 const StyledMed = styled.div`
-  width: 5%;
+  width: 2%;
   height: 100%;
+  margin-left: 98%;
   background-color: #141213;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;

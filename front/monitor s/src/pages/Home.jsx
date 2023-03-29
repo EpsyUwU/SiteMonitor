@@ -1,28 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonC from '../base/ButtonC';
 import Titulo from '../base/Titulo';
 import VistaHome from '../components/VistaHome'
 import Datos from "../base/Datos";
 import {img} from "../img";
-//import { Component } from 'react';
 import ButtonReg from '../base/ButtonReg';
 import { Link }from 'react-router-dom'
 
 
-
 function Home() {
-    let temperatura = "28C°";
+    const [temp, setTemp] = useState(0)
+
+    setInterval(() => setTemp(temp+5), 5000)
+
+    let temperatura = temp+"C°";
     let porcentaje = "35%";
   return (
     <>
         <div className="container-fluid ht">
             <div className="row">
                 <div className="col-1">
-                    <div className="row">
-                        <div className="col-9 m5">
-                            <ButtonC typ={"button"} img={img.iconos.Tuerca} />
-                        </div>
-                    </div>
                     <div className="row ">
                         <div className="col-9 m5">
                             <ButtonC typ={"button"} img={img.iconos.Apagar} />
