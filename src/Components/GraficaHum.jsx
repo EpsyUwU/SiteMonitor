@@ -5,7 +5,7 @@ import '../Assets/Grafica.css'
 const variable = 60.00;
 
 
-export default function Grafica(){
+export default function GraficaHum(){
 
 
 
