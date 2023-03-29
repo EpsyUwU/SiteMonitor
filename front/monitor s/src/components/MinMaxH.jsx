@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProgressBars from '../base/ProgressBars';
-
+import ListaHumedades from './ListaHumedades';
 
 const StyledBox = styled.div`
   background-color: #d5e6ff;
@@ -22,6 +21,9 @@ const StyledLargeBar=styled.div`
   border: solid 3px #d5e6ff;
   border-radius: 10px;
   height: 100%;
+  align-content: flex-start;
+  margin-left: 0;
+  padding: 0;
   `;
 const StyledShortBar=styled.div`
   background-color: rgba(85, 134, 229, 0.29);
@@ -44,9 +46,19 @@ const StyledGraff=styled.div`
   overflow: auto
 `;
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
 function MinMaxH() {
   let porcentaje = "param";
-  let reg=24;
+  let datos = []
+
+  for (let i = 0; i < 5; i++) { // muestra 0, luego 1, luego 2
+  datos.push(getRandomInt(40));
+  }
+
   return (
     <StyledBox className='row'>
       <div className="row">space div</div>
@@ -61,21 +73,19 @@ function MinMaxH() {
           <StyledText>Peligro</StyledText>
         </div>
       </div>
-
-      <StyledGraff className="row">
+      {datos.map((dato) =>
+      <StyledGraff className="row" key={dato.id}>
         <div className="col-8">
-          {/** */}
-          <div className="row">
-            <StyledLargeBar>jhbyg</StyledLargeBar>
-          </div>
+          <ListaHumedades data={dato}/>
         </div>
         <div className="col-2">
-          <div className="row"><StyledColorBox>a</StyledColorBox></div>
+          <StyledColorBox>{dato}</StyledColorBox>
         </div>
         <div className="col-2">
-          <div className="row"><StyledShortBar>{porcentaje}</StyledShortBar></div>
+          <StyledShortBar>{dato}</StyledShortBar>
         </div>
       </StyledGraff>
+      )}
     </StyledBox>
   )
 }
