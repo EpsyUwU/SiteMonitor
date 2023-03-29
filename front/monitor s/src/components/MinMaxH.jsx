@@ -7,6 +7,7 @@ const StyledBox = styled.div`
   border: solid 3px #d5e6ff;
   border-radius: 10px;
   height: 100%;
+  display:flex;
 `;
 const StyledText = styled.p`
   font-family: 'Fira Code';
@@ -27,12 +28,16 @@ const StyledShortBar=styled.div`
   height: 100%;
   text-align: center;
 `;
+const Colors=styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const StyledColorBox=styled.div`
   background-color: rgba(85, 134, 229, 0.29);
   border: solid 3px #d5e6ff;
   border-radius: 10px;
   height: 100%;
-  width: 25%;
+  width: 50%;
   text-align: center;
 `;
 const StyledGraff=styled.div`
@@ -101,9 +106,10 @@ function MinMaxH() {
             <div className="col-8">
               <ListaHumedades data={dato}/>
             </div>
-            <div className="col-2">
+            <Colors className="col-2">
+              {/*{dato}* */}
               <StyledColorBox>{dato}</StyledColorBox>
-            </div>
+            </Colors>
             <div className="col-2">
               <StyledShortBar>{dato}%</StyledShortBar>
             </div>

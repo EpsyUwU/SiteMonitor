@@ -104,7 +104,6 @@ body, html, .App, #root, .auth-wrapper {
   height: 100%;
   display: flex;
   justify-content: center;
-  border: 5px solid rgba(23, 117, 187, 1);
   border-radius: 26px;
   padding: 0;
 }
