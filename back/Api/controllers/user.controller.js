@@ -1,5 +1,6 @@
-import {getAllUser, login_user, _create_user,_update_user,_delete_user, getUserById} from '../models/user.model.js' 
+import {getAllUser, login_user, _create_user,_delete_user, getUserById} from '../models/user.model.js' 
 import jwt from 'jsonwebtoken';
+import rabbitMQ from '../RabbitMQ/Consummer.js';
 
 //Crear Usuario-----------------------------------------------------
 const create_user = async (req, res) => {
@@ -15,7 +16,7 @@ const create_user = async (req, res) => {
     }
 
     try {
-        _create_user(user,(data)=>{
+        _create_user(user,async (data)=>{
             let user = data;
             
         
@@ -45,44 +46,6 @@ const create_user = async (req, res) => {
     }
 
 };
-
-//Actualizar Usuario-------------------------------------------------
-const update_user = async(req, res) => {
-
-    let user = {
-        IdUsuario: req.body.IdUsuario,
-        nombre : req.body.nombre,
-        paterno : req.body.paterno,
-        materno : req.body.materno,
-        fechaNacimiento : req.body.fechaNacimiento,
-        username : req.body.username,
-        password : req.body.password,
-        direccion: req.body.direccion
-    }
-
-    try {
-        _update_user(user, (data) => {
-            let status = data.status;
-            console.log(status);
-           
-            return res.json({
-                error:false,
-                status: 200,
-                menssage:"Usuario Actualizado",
-                
-            }); 
-            
-        })
-    } catch (error) {
-        return res.json({
-            error:true,
-            status:500,
-            menssage:"Error en el servidor",
-            StatusError : error.toString()
-        });
-    }
-
-}
 
 //Eliminar Usuario--------------------------------------------------
 const delete_user = async(req, res) => {
@@ -118,8 +81,34 @@ const delete_user = async(req, res) => {
 //Llamar a todos los usuarios---------------------------------------
 const all_User = async(req,res) => {
    
-    getAllUser((data)=>{
+    getAllUser(async (data)=>{
         let users = data;
+
+        const message = {
+            data: {
+                users
+            }
+        }
+
+        const sent = await rabbitMQ.channel.sendToQueue(
+            "AllUsersRequest",
+            Buffer.from(JSON.stringify(message), { persistent: true })
+        )
+
+        if (sent) {
+            console.log(
+              `Mensaje enviado a la cola 'AllUsersRequest': ${JSON.stringify(
+                message
+              )}`
+            );
+          } else {
+            console.log(
+              `Error al enviar el mensaje a la cola 'AllUsersRequest': ${JSON.stringify(
+                message
+              )}`
+            );
+          }
+
         res.json({
             error:false,
             status: 200,
@@ -158,7 +147,7 @@ const login = async(req,res) => {
                             status:200,
                             menssage:"Usuario encontrado",
                             user,
-                            token
+                            data:token
                         }); 
                     }
                 });
@@ -192,9 +181,20 @@ const user_By_IdUser = async(req,res) => {
     let {IdUsuario} = req.params;
 
     try {
-        getUserById(IdUsuario, (data => {
+        getUserById(IdUsuario,async (data) => {
             
             let user = data;
+
+            const message = {
+                data: {
+                    user
+                }
+            }
+
+            const sent = await rabbitMQ.channel.sendToQueue(
+                "ByUserRequest",
+                Buffer.from(JSON.stringify(message), { persistent: true })
+            )
           
             if(user){
                 return res.json({
@@ -212,7 +212,7 @@ const user_By_IdUser = async(req,res) => {
                 });  
             } 
                 
-        }))
+        })
     } catch (error) {
         return res.json({
             error:true,
@@ -225,7 +225,6 @@ const user_By_IdUser = async(req,res) => {
 
 export const userController = {
     create_user,
-    update_user,
     delete_user,
     all_User,
     login,

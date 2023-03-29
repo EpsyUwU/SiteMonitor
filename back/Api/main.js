@@ -5,15 +5,17 @@ import { createConnection } from 'mysql';
 import {conexion}  from "./database/MySQL.database.js";
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import amqp from 'amqplib';
-
+import rabbitMQ from './RabbitMQ/Consummer.js';
 const app = express()
+
 app.use(cors());
 const port = 3000
+
 
 app.use(express.json({limit: '50mb'}));
 app.use('/api/monitors/user', user);
 app.use('/api/monitors/TyH', TyH);
+await rabbitMQ.connect(); 
 
 const limiter = rateLimit({
   windowMs: 60 * 1000, 
