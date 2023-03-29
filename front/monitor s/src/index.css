@@ -7,7 +7,6 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -26,8 +25,7 @@ body, html, .App, #root, .auth-wrapper {
 
 /* Login css */
 
-.login,
-.image {
+.login, .image {
   min-height: 100vh;
 }
 .bg-image {
@@ -43,57 +41,45 @@ body, html, .App, #root, .auth-wrapper {
   padding: 0%;
   box-sizing: border-box;
 }
-
 .ht{
   height: 100vh;
 }
-
 .hf{
   height: 80vh;
 }
-
 .bor{
   border: 1px solid black;
 }
-
 .m5{
   margin-top: 5%;
 }
-
 .m2{
   margin-top: 2%;
 }
-
 .hq{
   height: 40%;
 }
-
 .h30{
   height: 30%;
 }
-
 .h100{
   height: 100%;
 }
-
 .box1{
   border: solid 8px #1775BB;
   border-radius: 20px;
   height: 70vh;
 }
-
 .box2{
   border: solid 8px #1775BB;
   border-radius: 20px;
   height: 80vh;
 }
-
 .boxblue{
   background-color: #D5E6FF;
   border-radius: 10px;
   border: #D5E6FF 1px;
 }
-
 .temp{
   font-family: 'Fira Code', monospace;
   font-style: normal;
@@ -103,7 +89,6 @@ body, html, .App, #root, .auth-wrapper {
   color: #1775BB;
   margin-top: 15%;
 }
-
 .swich{
   font-family: 'Fira Code', monospace;
   font-style: normal;
@@ -123,7 +108,6 @@ body, html, .App, #root, .auth-wrapper {
   border-radius: 26px;
   padding: 0;
 }
-
 .graphic{
   width: 100%;
   height: 100%;
@@ -131,21 +115,16 @@ body, html, .App, #root, .auth-wrapper {
   border: 10px solid rgba(119, 174, 224, 1);
   border-radius: 20px;
 }
-
 .columns-12{
   height: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
-
 .columns-2{
   height: 100%;
   display: grid;
   grid-template-columns: repeat(2,1fr);
 }
-
-.pruebas{
-  width: auto;
-  align-content: center;
-  background-color: #1c3cdb8a;
+.maxoo{
+  width: 100%;
 }

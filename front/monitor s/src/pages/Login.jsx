@@ -43,7 +43,7 @@ export default function SignIn() {
           <div className="col-md-6 bg-light">
             <div className="login d-flex align-items-center py-5">
               <div className="container  text-center">
-                <div className="row">
+                <div className="row maxoo">
                   <div className="col-lg-10 col-xl-7 mx-auto">
                     <h3 className="display-4">Monitor S</h3>
                     <p className="text-muted mb-4">Medidas para su seguridad</p>
