@@ -17,7 +17,7 @@ function App() {
             <Route path='/Home' element={<Home/>} />
             <Route path='/Humedad' element={<Humedad/>} />
             <Route path='/Temperatura' element={<Temperatura/>} />
-            <Route path="/Login" element={<Sign_Up/>} />
+            <Route path="/" element={<Sign_Up/>} />
             <Route path="/Register" element={<Sign_In/>}/>
           </Routes>
         </BrowserRouter>

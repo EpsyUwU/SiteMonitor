@@ -13,7 +13,7 @@ const StyledMedida = styled.div`
 const StyledMed = styled.div`
   width: 2%;
   height: 100%;
-  margin-left: 98%;
+  margin-left: ${props => props.rango/98}%;
   background-color: #141213;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;
@@ -33,6 +33,8 @@ const StyledTA = styled.div`
 `;
 
 function MinMaxT() {
+
+  let dato = 20 
   return (
     <>
     <div className="row h100">
@@ -42,7 +44,7 @@ function MinMaxT() {
         </div>
         <div className="row h30">
           <StyledMedida className='m2'>
-            <StyledMed></StyledMed>
+            <StyledMed rango={dato*90}></StyledMed>
           </StyledMedida>
         </div>
         <div className="row">

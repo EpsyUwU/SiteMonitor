@@ -47,7 +47,6 @@ export default function SignUp() {
       <div className="container-fluid">
         <div className="row no-gutter">
           <div className="col-md-6 d-none d-md-flex bg-image" />
-
           <div className="col-md-6 bg-light">
             <div className="login d-flex align-items-center py-5">
               <div className="container  text-center">

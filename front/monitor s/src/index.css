@@ -115,7 +115,7 @@ body, html, .App, #root, .auth-wrapper {
 
 /* ---------------------GRAFICAS--------------------- */
 
-.container{
+.contain{
   height: 100%;
   display: flex;
   justify-content: center;
