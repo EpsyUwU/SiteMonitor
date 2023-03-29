@@ -29,34 +29,6 @@ export const _create_user = (user,callback) =>{
 
 }
 
-//Actualizar Usuario-------------------------------------------------
-export const _update_user = (user, callback) =>{
-
-    let sql = 'call sp_usuarios_actualizar('  +user.IdUsuario+',"'
-                                    +user.nombre+'", "'+
-                                    user.paterno+'","'
-                                    +user.materno+'","'
-                                    +user.fechaNacimiento+'","'
-                                    +user.username+'","'
-                                    +user.password+'","'
-                                    +user.direccion+'")';
-    let connection = createConnection(conexion);
-
-    connection.query(sql,(err,data) => {
-        if(err){
-            throw err;
-        };
-        if(data.length>0){
-            connection.end();
-            return callback(data[0][0]);
-        };
-        connection.end();
-        return callback(null);
-
-    });
-
-}
-
 //Eliminar Usuario--------------------------------------------------
 export const _delete_user = (IdUsuario,callback) =>{
 
@@ -121,7 +93,7 @@ export const login_user = (username, password,callback) =>{
 //Listar Usuario por Id--------------------------------------------
 export const getUserById = (IdUsuario,callback) =>{
 
-    let sql = 'call user_listById('+IdUsuario+')';
+    let sql = 'call sp_usuarios_id('+IdUsuario+')';
     // console.log(sql);
     let connection = createConnection(conexion);
     

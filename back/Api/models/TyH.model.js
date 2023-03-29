@@ -3,12 +3,11 @@ import {conexion}  from "../database/MySQL.database.js";
 
 export const _insertNewDateHyT = (TyH,callback) =>{
 
-    let sql = 'call sp_nuevoRegistro_TyH('
-                                            +TyH.humedad+','
-                                            +TyH.temperatura+')';
+    let sql = 'call sp_nuevoRegistro_TyH( "'+TyH.humedad+'","'
+                                            +TyH.temperatura+'")';
 
     let connection = createConnection(conexion);
-
+    console.log(sql)
     connection.query(sql,(err,data) => {
         if(err){
             throw err;
@@ -24,9 +23,9 @@ export const _insertNewDateHyT = (TyH,callback) =>{
 
 }
 
-export const getall_RegsitroTyH = (fecha, callback) =>{
+export const getall_RegsitroTyH = (callback) =>{
 
-    let sql = 'call sp_tyh_registros("'+fecha+'")';
+    let sql = 'call sp_tyh_registros()';
     let connection = createConnection(conexion);
     
     connection.query(sql,(err,data) => {

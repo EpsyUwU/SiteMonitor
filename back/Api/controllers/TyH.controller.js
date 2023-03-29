@@ -1,30 +1,109 @@
 import _insertNewDateHyT from "../models/TyH.model.js"
+import rabbitMQ from '../RabbitMQ/Consummer.js';
 
-const nuevoRegistroTyH = async(req,res) => {
-        console.log(req.body);
 
-        _insertNewDateHyT._insertNewDateHyT(req.body.data,(data)=>{
-        });
-
-        res.send("ok");
-}
+const nuevoRegistroTyH = async(req, res) => {
+    console.log(req.body);
+  
+    let TyH = {
+      temperatura: req.body.data.temperatura,
+      humedad: req.body.data.humedad,
+    };
+  
+    try {
+      _insertNewDateHyT._insertNewDateHyT(TyH, async (data) => {
+        let TyH = data;
+  
+        if (TyH) {
+          res.json({
+            error: false,
+            status: 200,
+            menssage: "Nuevo dato insertado",
+            TyH,
+          });
+  
+        const message = {
+            data: {
+                temperatura: req.body.data.temperatura,
+                humedad: req.body.data.humedad
+            }
+        };
+  
+          const sent = await rabbitMQ.channel.sendToQueue(
+            "newTyHRequest",
+            Buffer.from(JSON.stringify(message), { persistent: true })
+          );
+  
+          if (sent) {
+            console.log(
+              `Mensaje enviado a la cola 'newTyHRequest': ${JSON.stringify(
+                message
+              )}`
+            );
+          } else {
+            console.log(
+              `Error al enviar el mensaje a la cola 'newTyHRequest': ${JSON.stringify(
+                message
+              )}`
+            );
+          }
+        } else {
+          res.json({
+            error: false,
+            status: 201,
+            menssage: "Nuevo dato insertado",
+            TyH,
+          });
+        }
+      });
+    } catch (error) {
+      res.json({
+        error: true,
+        status: 500,
+        menssage: "Error en el servidor",
+        StatusError: error.toString(),
+      });
+    }
+  };
+  
 
 const all_RegsitroTyH = async(req,res) => {
    
-    let fecha = req.body.fecha;
-
-    console.log(req.body);
-    _insertNewDateHyT.getall_RegsitroTyH(fecha,(data)=>{
-        //let data = data;
+    _insertNewDateHyT.getall_RegsitroTyH(async (data)=>{
         
-        //console.log(data.length )
-        let {length} = data
+        let TyH = data
+
+        const message = {
+          data: {
+            TyH
+          }
+        }
+
+        const sent = await rabbitMQ.channel.sendToQueue(
+          "AllTyHRequest",
+          Buffer.from(JSON.stringify(message), { persistent: true })
+        )
+
+        if (sent) {
+          console.log(
+            `Mensaje enviado a la cola 'AllTyHRequest': ${JSON.stringify(
+              message
+            )}`
+          );
+        } else {
+          console.log(
+            `Error al enviar el mensaje a la cola 'AllTyHRequest': ${JSON.stringify(
+              message
+            )}`
+          );
+        }
+
 
         res.json({
             error:false,
             status: 200,
-            message:length + " registros encontrados",
-            data,
+            message:" Se encontraron " + TyH.length + " datos de temperatura y humedad" ,
+            TyH,
         });
     })
 }
