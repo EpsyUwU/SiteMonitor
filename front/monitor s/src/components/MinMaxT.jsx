@@ -48,21 +48,6 @@ function MinMaxT() {
           <StyledTR/>
           <StyledTA/>
         </div>
-        <div className="row justify-content-end h30 m2 ">
-          <div className="col-6">
-            <StyledMedida className='row'>
-              <div className="col-2">
-                <p className='swich'>1m</p>
-              </div>
-              <div className="col-8">
-                
-              </div>
-              <div className="col-2">
-                <p className='swich'>5m</p>
-              </div>
-            </StyledMedida>
-          </div>
-        </div>
       </div>
     </div>
     </>
