@@ -4,10 +4,17 @@ import Titulo from '../base/Titulo'
 
 const StyledMedida = styled.div`
   width: 100%;
-  height: 100%;
+  height: 50%;
   background-color: #D5E6FF;
   border: 2px solid #1775BB;
   border-radius: 10px;
+`;
+
+const StyledMed = styled.div`
+  width: 5%;
+  height: 100%;
+  background-color: #141213;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;
 
 const StyledTR = styled.div`
@@ -33,13 +40,15 @@ function MinMaxT() {
           <Titulo text="Temperatura" />
         </div>
         <div className="row h30">
-          <StyledMedida></StyledMedida>
+          <StyledMedida className='m2'>
+            <StyledMed></StyledMed>
+          </StyledMedida>
         </div>
-        <div className="row m2">
+        <div className="row">
           <StyledTR/>
           <StyledTA/>
         </div>
-        <div className="row justify-content-end h30 m2">
+        <div className="row justify-content-end h30 m2 ">
           <div className="col-6">
             <StyledMedida className='row'>
               <div className="col-2">

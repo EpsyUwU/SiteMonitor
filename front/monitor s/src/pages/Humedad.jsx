@@ -18,7 +18,7 @@ function Humedad() {
             </div>
           </div>
         </div>
-        <div className="col-6 m5">
+        <div className="col-6 m2">
           <VistaHumedad />
         </div>
       </div>
