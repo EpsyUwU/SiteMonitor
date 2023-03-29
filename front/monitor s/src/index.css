@@ -1,0 +1,152 @@
+/* ---------------------APP--------------------- */
+body{
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+h1,h2,h3,h4,h5,h6,label,span {
+  font-weight: 500;
+  font-family: 'Fira Sans', sans-serif;
+}
+body, html, .App, #root, .auth-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Login css */
+
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('https://i.pinimg.com/736x/8e/ee/04/8eee04aeefee34699b413b5a55079b82.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+/* ---------------------END APP--------------------- */
+
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+.ht{
+  height: 100vh;
+}
+
+.hf{
+  height: 80vh;
+}
+
+.bor{
+  border: 1px solid black;
+}
+
+.m5{
+  margin-top: 5%;
+}
+
+.m2{
+  margin-top: 2%;
+}
+
+.hq{
+  height: 40%;
+}
+
+.h30{
+  height: 30%;
+}
+
+.h100{
+  height: 100%;
+}
+
+.box1{
+  border: solid 8px #1775BB;
+  border-radius: 20px;
+  height: 70vh;
+}
+
+.box2{
+  border: solid 8px #1775BB;
+  border-radius: 20px;
+  height: 80vh;
+}
+
+.boxblue{
+  background-color: #D5E6FF;
+  border-radius: 10px;
+  border: #D5E6FF 1px;
+}
+
+.temp{
+  font-family: 'Fira Code', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 150%;
+  text-align: center;
+  color: #1775BB;
+  margin-top: 15%;
+}
+
+.swich{
+  font-family: 'Fira Code', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 150%;
+  text-align: center;
+  color: #1775BB;
+  margin-top: 65%;
+}
+
+/* ---------------------GRAFICAS--------------------- */
+
+.container{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  border: 5px solid rgba(23, 117, 187, 1);
+  border-radius: 26px;
+  padding: 0;
+}
+
+.graphic{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(213, 230, 255, 1);
+  border: 10px solid rgba(119, 174, 224, 1);
+  border-radius: 20px;
+}
+
+.columns-12{
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.columns-2{
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+
+.pruebas{
+  width: auto;
+  align-content: center;
+
+}
