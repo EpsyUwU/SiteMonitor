@@ -19,7 +19,7 @@ const StyledText = styled.p`
 `;
 const Overow=styled.div`
   overflow: auto;
-  height: 79%;
+  height: 70%;
 `;
 const StyledShortBar=styled.div`
   background-color: rgba(85, 134, 229, 0.29);
