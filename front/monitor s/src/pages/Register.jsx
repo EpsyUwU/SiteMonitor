@@ -13,29 +13,29 @@ export default function SignUp() {
   });
   const navigate = useNavigate();
   const onSubmit = () => {
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
+    const raw = JSON.stringify({
       nombre: user.nombre,
       apellido_materno: user.apellido_materno,
       apellido_paterno: user.apellido_paterno,
       fecha_nacimiento: user.fecha_nacimiento,
-      email: user.email,
       password: user.password,
-      username: user.username
+      username: user.username,
+      email: user.email
     });
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
 
-    fetch("localhost:3000/api/checkroom/user/Register", requestOptions)
+    fetch("https://monitors.hopto.org:3000/api/monitors/user/create_user", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result), navigate("/Home"))
+      .then((result) => console.log(result), navigate("/"))
       .catch((error) => console.log("error", error));
   };
 

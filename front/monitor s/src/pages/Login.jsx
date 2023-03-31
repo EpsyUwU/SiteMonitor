@@ -3,32 +3,24 @@ import { useNavigate, Link } from "react-router-dom";
 
 export default function SignIn() {
     const [user, setUser] = useState({
-        UserName: "",
+        username: "",
         password: "",
       });
   const navigate = useNavigate();
 
-  const onSubmit = () => {
-      console.log(user.email)
-      console.log( user.password)
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    
-    var raw = JSON.stringify({
-      "username": user.UserName,
-      "password": user.password
-    });
-    
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    
-    fetch("localhost:3000/api/checkroom/user/login", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result), navigate('/Home'))
+  const onSubmit = (e) => {
+    e.preventDefault();
+  
+    fetch(`https://monitors.hopto.org:3000/api/monitors/user/login/${user.username}/${user.password}`)
+      .then(response => response.json())
+      .then(result => {
+        if(result.message){
+          alert("usuario no encontrado por favor intentelo de nuevo");
+        }else{
+          localStorage.setItem("token", result.data.token);
+          navigate('/Home');
+        }
+      })
       .catch(error => console.log('error', error));
   };
 
@@ -48,16 +40,16 @@ export default function SignIn() {
                     <h3 className="display-4">Monitor S</h3>
                     <p className="text-muted mb-4">Medidas para su seguridad</p>
                     <form
-                      method="POST"
+                      method="GET"
                       onSubmit={onSubmit}
                       autoComplete={"off"}
                     >
                       <div className="mb-3">
                         <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="Correo Electronico"
+                          id="username"
+                          name="username"
+                          type="text"
+                          placeholder="username"
                           className="form-control rounded-pill border-0 shadow-sm px-4"
                           onChange={handleChange}
                         />
@@ -67,7 +59,7 @@ export default function SignIn() {
                           id="password"
                           name="password"
                           type="password"
-                          placeholder="Contraseña"
+                          placeholder="password"
                           className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
                           onChange={handleChange}
                         />

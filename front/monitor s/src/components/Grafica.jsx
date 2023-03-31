@@ -4,14 +4,14 @@ import AnyChart from 'anychart-react'
 
 
 
-export default function Grafica(){
+export default function Grafica({arrTemp}){
 
     const data = [
-        ['p1', 5, 4],
-        ['p2', 6, 2],
-        ['p3', 3, 7],
-        ['p4', 1, 5],
-        ['P5', 4, 8]]
+        ['p1', arrTemp[0], 4],
+        ['p2', arrTemp[1], 2],
+        ['p3', arrTemp[2], 7],
+        ['p4', arrTemp[3], 5],
+        ['P5', arrTemp[4], 8]]
 
 // Also you can set data as array or object
 // As array

@@ -5,16 +5,40 @@ import VistaHome from '../components/VistaHome'
 import Datos from "../base/Datos";
 import {img} from "../img";
 import ButtonReg from '../base/ButtonReg';
-import { Link }from 'react-router-dom'
+import {useNavigate, Link }from 'react-router-dom'
 
 function Home() {
     
     const [temp, setTemp] = useState(0)
-
-    setInterval(() => setTemp(temp+5), 5000)
+    const [hum,setHum] = useState(0)
 
     let temperatura = temp+"C°";
-    let porcentaje = "35%";
+    let porcentaje = hum+"%";
+
+    const navigate = useNavigate();
+
+    setInterval(actualizar,2000)
+
+    function actualizar(){
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        redirect: "follow",
+        };
+       fetch(`https://monitors.hopto.org:3000/api/monitors/TyH/all_registros`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            const ola = result.TyH.pop()
+            setTemp(ola.humedad)
+            setHum(ola.temperatura)
+        })
+        .catch(error => console.log('error', error)); 
+    }
+    
+    
   return (
     <>
         <div className="container-fluid ht">
@@ -22,7 +46,11 @@ function Home() {
                 <div className="col-1">
                     <div className="row ">
                         <div className="col-9 m5">
-                            <ButtonC typ={"button"} img={img.iconos.Apagar} />
+                            <ButtonC 
+                            typ={"button"} 
+                            img={img.iconos.Apagar} 
+                            />
+                            <Link to = "/Login"></Link>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ function ButtonC({typ,clas,img}){
             className={clas}
             >
                 <img className="img-fluid" src={img} alt="xd"/>
+                
             </a>
         </>
     ) 

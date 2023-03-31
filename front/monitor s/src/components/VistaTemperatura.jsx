@@ -8,14 +8,14 @@ const StyledCircle = styled.div`
   background-color: #77AEE0;
 `;
 
-function VistaTemperatura() {
+function VistaTemperatura({tempDat}) {
   return (
     <>
       <div className="row justify-content-center">
         <div className="col-8">
           <StyledCircle className='align-items-center row justify-content-center'>
             <div className="col-5 boxblue bor">
-              <p className='temp'>28.5°C</p>
+              <p className='temp'>{tempDat}°C</p>
             </div>
           </StyledCircle>
         </div>

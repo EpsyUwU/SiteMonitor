@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import AnyChart from 'anychart-react';
 
-const variable = 60.00;
 
 
-function VistaHumedad() {
+
+function VistaHumedad({humed}) {
+
+  const variable = humed;
   
   const complexSettings = {
     width: 600,
