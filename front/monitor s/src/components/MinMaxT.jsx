@@ -32,9 +32,9 @@ const StyledTA = styled.div`
   clip-path: polygon(0 100%, 0 0, 100% 100%);
 `;
 
-function MinMaxT() {
+function MinMaxT({tempDat}) {
 
-  let dato = 20 
+  let dato = tempDat
   return (
     <>
     <div className="row h100">

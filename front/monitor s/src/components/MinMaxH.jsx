@@ -57,16 +57,9 @@ const StyledTA = styled.div`
   clip-path: polygon(0 100%, 0 0, 100% 100%);
 `;
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
 
-function MinMaxH() {
-  let datos = []
-
-  for (let i = 0; i < 25; i++) { // muestra 0, luego 1, luego 2
-  datos.push(getRandomInt(40));
-  }
+function MinMaxH({arrHum}) {
+  let datos = arrHum
 
   return (
     <StyledBox className='row'>
