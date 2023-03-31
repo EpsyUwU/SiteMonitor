@@ -1,0 +1,37 @@
+{
+  "name": "monitor-s",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "amqp-connection-manager": "^4.1.11",
+    "amqplib": "^0.10.3",
+    "anychart-react": "^1.4.1",
+    "bootstrap": "^5.3.0-alpha1",
+    "buffer-browserify": "^0.2.5",
+    "rabbit.js": "^0.4.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.9.0",
+    "react-router-dom": "^6.9.0",
+    "styled-components": "^5.3.9"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "sass": "^1.59.3",
+    "vite": "^4.2.1"
+  },
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
