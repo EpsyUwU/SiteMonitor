@@ -6,8 +6,6 @@ import Datos from "../base/Datos";
 import {img} from "../img";
 import ButtonReg from '../base/ButtonReg';
 import { Link }from 'react-router-dom'
-import ConnectionRabbitMQ from '../rabbitMQ/ConnectionRabbitMQ';
-
 
 function Home() {
     
@@ -52,8 +50,6 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <h1>hola</h1>
-            <ConnectionRabbitMQ exchange="newTyHRequest"/>
         </div>
     </>
   )
