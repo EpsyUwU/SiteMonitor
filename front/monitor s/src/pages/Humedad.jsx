@@ -1,41 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import Titulo from '../base/Titulo'
 import MinMaxH from '../components/MinMaxH'
 import VistaHumedad from '../components/VistaHumedad'
+import SockJS from "sockjs-client";
+import { over } from "stompjs";
+
+var stompClient = null; //variable donde se guarda la conexion del websocket
 
 function Humedad() {
 
     const [hum,setHum] = useState(0)
     const [humAr,setHumAr] = useState([]);
 
-    setInterval(actualizar,1000)
+    const URI = "http://localhost:8080" // URI de la API GATEWAT
 
-    function actualizar(){
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    const connect = () => { // esta funcion conecta al websocket
+        let sock = new SockJS(URI + "/ws");
+        stompClient = over(sock); // aqui se guarda la conexioon en una variable
+        stompClient.connect({}, onConnected, onerror); //aqui se conecta
+    };
 
-        const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        redirect: "follow",
-        };
-
-       fetch(`https://monitors.hopto.org:3000/api/monitors/TyH/all_registros`, requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            const ola = result.TyH.pop()
-            let dato = []
-
-            setHum(ola.temperatura)
-
-            for (let i = 0; i < 10; i++) {
-              const ola10 = result.TyH.pop()
-              dato.push(ola10.temperatura);
-            }
-            setHumAr(dato)
-        })
-        .catch(error => console.log('error', error)); 
+    const onerror = (e) => {
+        console.log(e)
     }
+  
+    const onConnected = () => { // esta funcion avisa cuando se conecto al websocket
+        console.log("[INFO] - stomp conected");
+        stompClient.subscribe("/response/xd/private/user" , returned);
+    };
+
+    const returned = (payload) => {
+        let payloadData = JSON.parse(payload.body);
+        setHum(payloadData.data.humedad)
+
+        let dato = []
+        dato.push(payloadData.data.humedad)
+        setHumAr(dato)
+    }
+    
+    useEffect(() => {
+        connect();
+      }, [])
+   
   return (
     <>
     <div className="container-fluid ht">

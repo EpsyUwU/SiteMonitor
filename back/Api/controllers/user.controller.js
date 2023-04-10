@@ -142,40 +142,49 @@ const login = async(req,res) => {
     try {
         login_user(username, password, (data)=> {
             let user = data[0];
-            //console.log(user);
-            if(user){
-
-                jwt.sign({
-                    user
-                }, "SECRET", {
-                    expiresIn: '3h'
-                }, (err, token) => {
-                    if (err) {
-                        res.json({
-                            error: true,
-                            tipoError: 403,
-                            mesage: "Error en el servidor",
-                        });
-                    } else {
+            console.log(user);
+          
+                if(req.body.username === user.username){
+                    if(req.body.password === user.password){
+                        jwt.sign({
+                            username: user.username
+                        }, "SECRET", {
+                            expiresIn: '3h'
+                        },(err, token) => {
+                            if (err) {
+                                res.json({
+                                    error: true,
+                                    tipoError: 403,
+                                    mesage: "Error en el servidor",
+                                });
+                            } else {
+                                return res.json({
+                                    error:false,
+                                    status:200,
+                                    menssage:"Usuario encontrado",
+                                    user,
+                                    data:token
+                                }); 
+                            }
+                        })
+                    }else if(user == "undefined"){
                         return res.json({
                             error:false,
                             status:200,
-                            menssage:"Usuario encontrado",
+                            menssage:"contraseña no encontrado",
                             user,
                             data:token
                         }); 
                     }
-                });
-
-            }else{
-                return res.json({
-                    error:false,
-                    status:201,
-                    menssage:"Usuario no encontrado",
-                    user:[]
-                });  
-            }
-    
+                }else{
+                    return res.json({
+                        error:false,
+                        status:200,
+                        menssage:"Usuario no encontrado",
+                        user,
+                        data:token
+                    }); 
+                }
         })
     } catch (error) {
         return res.json({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ButtonC from '../base/ButtonC';
 import Titulo from '../base/Titulo';
 import VistaHome from '../components/VistaHome'
@@ -6,34 +6,59 @@ import Datos from "../base/Datos";
 import {img} from "../img";
 import ButtonReg from '../base/ButtonReg';
 import {useNavigate, Link }from 'react-router-dom'
-import amqp from 'amqplib'
+import SockJS from "sockjs-client";
+import { over } from "stompjs";
+
+
+
+var stompClient = null; //variable donde se guarda la conexion del websocket
+
+
 
 function Home() {
-    
+
     const [temp, setTemp] = useState(0)
     const [hum,setHum] = useState(0)
 
     let temperatura = temp+"C°";
     let porcentaje = hum+"%";
 
-    const navigate = useNavigate();
 
-    async function listenQueue(){
-        const connection = await amqp.connect("amqps://fmvuaato:rf8WI8vTryL7n8t0ytED8VYTQ1yHd_Mp@shark.rmq.cloudamqp.com/fmvuaato")
-        const channel = await connection.createChannel()
 
-        await channel.assertQueue('newTyHRequest')
+    const URI = "http://localhost:8080" // URI de la API GATEWAT
 
-        channel.consume('newTyHRequest', message => {
-            const content = JSON.parse(message.content.toString)
+    const connect = () => { // esta funcion conecta al websocket
+        let sock = new SockJS(URI + "/ws");
+        stompClient = over(sock); // aqui se guarda la conexioon en una variable
+        stompClient.connect({}, onConnected, onerror); //aqui se conecta
+    };
 
-            console.log(content)
-        })
+    const onerror = (e) => {
+        console.log(e)
     }
+  
+    const onConnected = () => { // esta funcion avisa cuando se conecto al websocket
+        console.log("[INFO] - stomp conected");
+        stompClient.subscribe("/response/xd/private/user" , returned);
+    };
 
-    listenQueue()
+    const returned = (payload) => {
+        let payloadData = JSON.parse(payload.body);
+        setTemp(payloadData.data.temperatura)
+        setHum(payloadData.data.humedad)
+    }
     
-    
+    useEffect(() => {
+        connect();
+      }, [])
+
+      const navigate = useNavigate();
+
+      const Navigate = (e) =>{
+        e.preventDefault();
+        navigate('/Temperatura')
+      }
+
   return (
     <>
         <div className="container-fluid ht">
