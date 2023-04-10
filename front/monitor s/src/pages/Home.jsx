@@ -1,31 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonC from '../base/ButtonC';
 import Titulo from '../base/Titulo';
 import VistaHome from '../components/VistaHome'
 import Datos from "../base/Datos";
 import {img} from "../img";
-//import { Component } from 'react';
 import ButtonReg from '../base/ButtonReg';
-import { Link }from 'react-router-dom'
-
-
+import {useNavigate, Link }from 'react-router-dom'
+import amqp from 'amqplib'
 
 function Home() {
-    let temperatura = "28C°";
-    let porcentaje = "35%";
+    
+    const [temp, setTemp] = useState(0)
+    const [hum,setHum] = useState(0)
+
+    let temperatura = temp+"C°";
+    let porcentaje = hum+"%";
+
+    const navigate = useNavigate();
+
+    async function listenQueue(){
+        const connection = await amqp.connect("amqps://fmvuaato:rf8WI8vTryL7n8t0ytED8VYTQ1yHd_Mp@shark.rmq.cloudamqp.com/fmvuaato")
+        const channel = await connection.createChannel()
+
+        await channel.assertQueue('newTyHRequest')
+
+        channel.consume('newTyHRequest', message => {
+            const content = JSON.parse(message.content.toString)
+
+            console.log(content)
+        })
+    }
+
+    listenQueue()
+    
+    
   return (
     <>
         <div className="container-fluid ht">
             <div className="row">
                 <div className="col-1">
-                    <div className="row">
-                        <div className="col-9 m5">
-                            <ButtonC typ={"button"} img={img.iconos.Tuerca} />
-                        </div>
-                    </div>
                     <div className="row ">
                         <div className="col-9 m5">
-                            <ButtonC typ={"button"} img={img.iconos.Apagar} />
+                            <ButtonC 
+                            typ={"button"} 
+                            img={img.iconos.Apagar} 
+                            />
+                            <Link to = "/Login"></Link>
                         </div>
                     </div>
                 </div>

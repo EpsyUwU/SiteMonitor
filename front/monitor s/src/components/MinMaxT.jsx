@@ -4,10 +4,18 @@ import Titulo from '../base/Titulo'
 
 const StyledMedida = styled.div`
   width: 100%;
-  height: 100%;
+  height: 50%;
   background-color: #D5E6FF;
   border: 2px solid #1775BB;
   border-radius: 10px;
+`;
+
+const StyledMed = styled.div`
+  width: 2%;
+  height: 100%;
+  margin-left: ${props => props.rango/98}%;
+  background-color: #141213;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;
 
 const StyledTR = styled.div`
@@ -24,7 +32,9 @@ const StyledTA = styled.div`
   clip-path: polygon(0 100%, 0 0, 100% 100%);
 `;
 
-function MinMaxT() {
+function MinMaxT({tempDat}) {
+
+  let dato = tempDat
   return (
     <>
     <div className="row h100">
@@ -33,26 +43,13 @@ function MinMaxT() {
           <Titulo text="Temperatura" />
         </div>
         <div className="row h30">
-          <StyledMedida></StyledMedida>
+          <StyledMedida className='m2'>
+            <StyledMed rango={dato*90}></StyledMed>
+          </StyledMedida>
         </div>
-        <div className="row m2">
+        <div className="row">
           <StyledTR/>
           <StyledTA/>
-        </div>
-        <div className="row justify-content-end h30 m2">
-          <div className="col-6">
-            <StyledMedida className='row'>
-              <div className="col-2">
-                <p className='swich'>1m</p>
-              </div>
-              <div className="col-8">
-                
-              </div>
-              <div className="col-2">
-                <p className='swich'>5m</p>
-              </div>
-            </StyledMedida>
-          </div>
         </div>
       </div>
     </div>

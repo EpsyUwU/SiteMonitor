@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProgressBars from '../base/ProgressBars';
-
+import ListaHumedades from './ListaHumedades';
 
 const StyledBox = styled.div`
   background-color: #d5e6ff;
   border: solid 3px #d5e6ff;
   border-radius: 10px;
   height: 100%;
+  display:flex;
 `;
 const StyledText = styled.p`
   font-family: 'Fira Code';
@@ -17,12 +17,10 @@ const StyledText = styled.p`
   font-size: 90%;
   color: #1775BB;
 `;
-const StyledLargeBar=styled.div`
-  background-color: rgba(85, 134, 229, 0.29);
-  border: solid 3px #d5e6ff;
-  border-radius: 10px;
-  height: 100%;
-  `;
+const Overow=styled.div`
+  overflow: auto;
+  height: 70%;
+`;
 const StyledShortBar=styled.div`
   background-color: rgba(85, 134, 229, 0.29);
   border: solid 3px #d5e6ff;
@@ -30,54 +28,87 @@ const StyledShortBar=styled.div`
   height: 100%;
   text-align: center;
 `;
+const Colors=styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const StyledColorBox=styled.div`
   background-color: rgba(85, 134, 229, 0.29);
   border: solid 3px #d5e6ff;
   border-radius: 10px;
   height: 100%;
-  width: 25%;
+  width: 50%;
   text-align: center;
 `;
 const StyledGraff=styled.div`
   align-items: center;
-  height: 80%;
-  overflow: auto
+  
+`;
+const StyledTR = styled.div`
+  width: 100%;
+  height: 2vh;
+  background-color: #db1c3c;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+`;
+const StyledTA = styled.div`
+  width: 100%;
+  height: 2vh;
+  background-color: #1c3cdb;
+  clip-path: polygon(0 100%, 0 0, 100% 100%);
 `;
 
-function MinMaxH(porcentt, registers) {
-  let porcentaje = "param";//let porcentaje = porcentt;
-  let reg=24;
+
+function MinMaxH({arrHum}) {
+  let datos = arrHum
+
   return (
     <StyledBox className='row'>
-      <div className="row">space div</div>
-      <div className="row">
-        <div className="col-4">
-          <StyledText>Excelente</StyledText>
-        </div>
-        <div className="col-4">
-          <StyledText>Normal</StyledText>
-        </div>
-        <div className="col-4">
-          <StyledText>Peligro</StyledText>
-        </div>
-      </div>
-
-      <StyledGraff className="row">
-        <div className="col-8">
-          {/** */}
-          <div className="row">
-            <StyledLargeBar><ProgressBars>kguy</ProgressBars>jhv</StyledLargeBar>
-            
+      
+        {/*Div de los estados */}
+        <div className="row">
+          <div className="col-4">
+            <StyledText>Excelente</StyledText>
           </div>
-          <ProgressBars>hgcgx</ProgressBars>
+          <div className="col-4">
+            <StyledText>Normal</StyledText>
+          </div>
+          <div className="col-4">
+            <StyledText>Peligro</StyledText>
+          </div>
         </div>
-        <div className="col-2">
-          <div className="row"><StyledColorBox>a</StyledColorBox></div>
-        </div>
-        <div className="col-2">
-          <div className="row"><StyledShortBar>{porcentaje}</StyledShortBar></div>
-        </div>
-      </StyledGraff>
+        {/*Div de los colores de estado*/}
+        <>
+          <StyledTR></StyledTR><StyledTA></StyledTA>
+        </>
+        {/*Div de significados */}
+        <StyledGraff className="row">
+            <div className="col-8">
+              <StyledText>Humedad representada en barras</StyledText>
+            </div>
+            <div className="col-2">
+              <StyledText>Estado</StyledText>
+            </div>
+            <div className="col-2">
+              <StyledText>Porcentaje</StyledText>
+            </div>
+          </StyledGraff>
+        {/*Div de la lista */}
+      <Overow>
+        {datos.map((dato) =>
+          <StyledGraff className="row" key={dato.id}>
+            <div className="col-8">
+              <ListaHumedades data={dato}/>
+            </div>
+            <Colors className="col-2">
+              {/*{dato}* */}
+              <StyledColorBox>{dato}</StyledColorBox>
+            </Colors>
+            <div className="col-2">
+              <StyledShortBar>{dato}%</StyledShortBar>
+            </div>
+          </StyledGraff>
+        )}
+      </Overow>
     </StyledBox>
   )
 }

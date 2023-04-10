@@ -1,15 +1,13 @@
 import Tuerca from "./assets/Tuerca.png";
-import Apagar from "./assets/Apagar.png";
-import Temperatura from "./assets/Temperatura.png";
-import Humedad from "./assets/Humedad.png";
+
 
 export const img = {
     iconos:{
         "Tuerca": Tuerca,
-        "Apagar": Apagar,
+        "Apagar": "https://monitor-fusion.s3.us-east-2.amazonaws.com/imagenes-s3/photo_4981083460089260690_m.jpg",
     },
     images:{
-        "Temperatura": Temperatura,
-        "Humedad": Humedad,
+        "Temperatura": "https://monitor-fusion.s3.us-east-2.amazonaws.com/imagenes-s3/photo_4981083460089260689_m.jpg",
+        "Humedad": "https://monitor-fusion.s3.us-east-2.amazonaws.com/imagenes-s3/photo_4981083460089260691_m.jpg",
     }
 }

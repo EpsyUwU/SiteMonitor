@@ -13,29 +13,29 @@ export default function SignUp() {
   });
   const navigate = useNavigate();
   const onSubmit = () => {
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
+    const raw = JSON.stringify({
       nombre: user.nombre,
       apellido_materno: user.apellido_materno,
       apellido_paterno: user.apellido_paterno,
       fecha_nacimiento: user.fecha_nacimiento,
-      email: user.email,
       password: user.password,
-      username: user.username
+      username: user.username,
+      email: user.email
     });
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
 
-    fetch("localhost:3000/api/checkroom/user/Register", requestOptions)
+    fetch("https://monitors.hopto.org:3000/api/monitors/user/create_user", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result), navigate("/Home"))
+      .then((result) => console.log(result), navigate("/"))
       .catch((error) => console.log("error", error));
   };
 
@@ -47,11 +47,10 @@ export default function SignUp() {
       <div className="container-fluid">
         <div className="row no-gutter">
           <div className="col-md-6 d-none d-md-flex bg-image" />
-
           <div className="col-md-6 bg-light">
             <div className="login d-flex align-items-center py-5">
               <div className="container  text-center">
-                <div className="row">
+                <div className="row maxoo">
                   <div className="col-lg-10 col-xl-7 mx-auto">
                     <h3 className="display-4">Monitor S</h3>
                     <p className="text-muted mb-4">Medidas para su seguridad</p>

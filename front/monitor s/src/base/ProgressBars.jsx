@@ -1,14 +1,14 @@
-import React from "react";
 import styled from "styled-components";
 
 const StyledLargeSInsideBar=styled.div`
-  background-color: rgba(85, 134, 229, 0.29);
-  border: solid 3px #d5e6ff;
-  border-radius: 10px;
+  background-color: #5586E5;
+  border-radius: 6px;
   height: 100%;
+  width: ${props => props.long}%;
   `;
-function ProgressBars(){
-    <StyledLargeSInsideBar>like proggressbar</StyledLargeSInsideBar>
-
+function ProgressBars({values}){
+  return( 
+  <StyledLargeSInsideBar long={values}>.</StyledLargeSInsideBar>
+  )
 }
 export default ProgressBars
