@@ -6,6 +6,7 @@ import Datos from "../base/Datos";
 import {img} from "../img";
 import ButtonReg from '../base/ButtonReg';
 import {useNavigate, Link }from 'react-router-dom'
+import amqp from 'amqplib'
 
 function Home() {
     
@@ -17,26 +18,20 @@ function Home() {
 
     const navigate = useNavigate();
 
-    setInterval(actualizar,2000)
+    async function listenQueue(){
+        const connection = await amqp.connect("amqps://fmvuaato:rf8WI8vTryL7n8t0ytED8VYTQ1yHd_Mp@shark.rmq.cloudamqp.com/fmvuaato")
+        const channel = await connection.createChannel()
 
-    function actualizar(){
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        await channel.assertQueue('newTyHRequest')
 
-        const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        redirect: "follow",
-        };
-       fetch(`https://monitors.hopto.org:3000/api/monitors/TyH/all_registros`, requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            const ola = result.TyH.pop()
-            setTemp(ola.humedad)
-            setHum(ola.temperatura)
+        channel.consume('newTyHRequest', message => {
+            const content = JSON.parse(message.content.toString)
+
+            console.log(content)
         })
-        .catch(error => console.log('error', error)); 
     }
+
+    listenQueue()
     
     
   return (
